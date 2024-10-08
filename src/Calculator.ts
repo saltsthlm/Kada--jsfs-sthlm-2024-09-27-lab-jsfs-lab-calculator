@@ -12,6 +12,10 @@ class Calculator {
       const numberArray = numberString.split("*");
       return Number(numberArray[0]) * Number(numberArray[1]);
     }
+    if (numberString.includes("/")) {
+      const numberArray = numberString.split("/");
+      return Number(numberArray[0]) / Number(numberArray[1]);
+    }
     return "Wrong input";
   }
 }

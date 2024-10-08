@@ -17,7 +17,7 @@ test("should calculate multiply expressions", () => {
   deepEqual(result, 20);
 });
 
-test.skip("should calculate division expressions", () => {
+test("should calculate division expressions", () => {
   const result = calculator.evaluate("15/5");
   deepEqual(result, 3);
 });
