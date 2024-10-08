@@ -7,8 +7,6 @@ export const validateInputString = (numberString: string) => {
         if (numberString.includes(opperand)){
       splitedArray = numberString.split(opperand); 
 }});
-    console.log(splitedArray);
-
     if (isNaN(Number(splitedArray[0])) || isNaN(Number(splitedArray[1]))) return false;
 
     return true;
