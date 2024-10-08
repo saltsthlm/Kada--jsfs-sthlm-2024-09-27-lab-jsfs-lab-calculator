@@ -7,7 +7,7 @@ test("should calculate add expressions", () => {
   deepEqual(result, 9);
 });
 
-test.skip("should calculate subtract expressions", () => {
+test("should calculate subtract expressions", () => {
   const result = calculator.evaluate("5-4");
   deepEqual(result, 1);
 });
