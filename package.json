@@ -8,7 +8,7 @@
     "dev": "tsx src/index.ts",
     "start": "node src/index.js",
     "lint": "eslint",
-    "test": "tsx --test src/greeter.test.ts",
+    "test": "tsx --test src/calculator.test.ts",
     "lint-fix": "eslint --fix",
     "format-check": "prettier . --check",
     "format": "prettier . --write"
