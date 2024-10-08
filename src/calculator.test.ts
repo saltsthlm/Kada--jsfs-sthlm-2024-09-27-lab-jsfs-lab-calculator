@@ -31,9 +31,12 @@ test("should throw an exception when the denominator in division is zero", () =>
   });
 });
 
-test.skip("should throw an exception when expression is not valid (invalid mathematical expression)", () => {
-  const result = calculator.evaluate("15/banan");
-  deepEqual(result, "input must be valid numbers");
+test("should throw an exception when expression is not valid (invalid mathematical expression)", () => {
+  assert.throws(() => {
+    calculator.evaluate("15/banan");
+  },{
+    message: "input must be valid numbers"
+  });
 });
 
 test.skip("should handle spaces in expression", () => {
