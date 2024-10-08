@@ -3,7 +3,7 @@ const { stdin, stdout } = process;
 const PROMPT = 'Write something 👇';
 
 stdout.write(PROMPT);
-stdin.resume()
+stdin.resume();
 
 stdin.setEncoding('utf8');
 
