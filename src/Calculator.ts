@@ -2,9 +2,10 @@ import { validateInputString } from "./validate-input-string";
 
 class Calculator {
   evaluate(numberString: string) {
+    const regex = /[+\-*/]/;
+    if(!regex.test(numberString)) throw new Error ("needs to contain opperand");
+    
     if(!validateInputString(numberString))throw new Error("input must be valid numbers");
-      //const regex = /[+\-*/]/;
-      //if(!regex.test(numberString)) throw new Error ("error");
       
     if (numberString.includes("+")) {
       const numberArray = numberString.split("+");

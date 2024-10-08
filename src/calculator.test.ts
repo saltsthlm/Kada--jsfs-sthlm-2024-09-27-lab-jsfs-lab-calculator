@@ -39,7 +39,15 @@ test("should throw an exception when expression is not valid (invalid mathematic
   });
 });
 
-test.skip("should handle spaces in expression", () => {
+test("should handle spaces in expression", () => {
   const result = calculator.evaluate("15  +   10");
   deepEqual(result, 25);
+});
+
+test("should contain opperand", () => {
+  assert.throws(() => {
+    calculator.evaluate("153");
+  },{
+    message: "needs to contain opperand"
+  });
 });
