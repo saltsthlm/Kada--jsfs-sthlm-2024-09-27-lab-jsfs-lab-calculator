@@ -40,7 +40,7 @@ test("should throw an exception when expression is not valid (invalid mathematic
 });
 
 test("should handle spaces in expression", () => {
-  const result = calculator.evaluate("15  +   10");
+  const result = calculator.evaluate("        15  +                                    10      ");
   deepEqual(result, 25);
 });
 
