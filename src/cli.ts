@@ -1,18 +1,25 @@
-const { stdin, stdout } = process;
+import calculator from "./Calculator";
 
-const PROMPT = "Write something 👇";
+export const main = () => {
+  const { stdin, stdout } = process;
 
-stdout.write(PROMPT);
-stdin.resume();
+  const PROMPT = "Write something 👇";
 
-stdin.setEncoding("utf8");
+  stdout.write(PROMPT);
+  stdin.resume();
 
-stdin.on("data", (data) => {
-  stdout.write(`echo ${data}`);
-  stdout.write(`\n${PROMPT}`);
-});
+  stdin.setEncoding("utf8");
 
-process.on("SIGINT", () => {
-  stdout.write("\n\nBye!\n");
-  process.exit();
-});
+  let result: number | string;
+
+  stdin.on("data", (data) => {
+    result = calculator.evaluate(data.toString());
+    stdout.write(`\nResult is: ${result}`);
+    stdout.write(`\n${PROMPT}`);
+  });
+
+  process.on("SIGINT", () => {
+    stdout.write("\n\nBye!\n");
+    process.exit();
+  });
+};

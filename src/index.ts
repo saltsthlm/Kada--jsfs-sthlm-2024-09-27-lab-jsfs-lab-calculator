@@ -1,3 +1,3 @@
-import calculator from "./Calculator";
+import { main } from "./cli";
 
-calculator.evaluate('4+5');
+main();

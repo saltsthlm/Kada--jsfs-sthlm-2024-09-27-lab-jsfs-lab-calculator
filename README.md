@@ -208,7 +208,7 @@ Edit `package.json` so that eslint runs before the test suites. For this, edit t
 
 ### The calculator
 
-Create a calculator module with an `evaluate` function that _takes a mathematical expression as a string_. For example: `calculator.evaluate('4+5')`. (This expression should return 9) The calculator should handle _addition_, _subtraction_, _multiplication_ and _division_ of integers. It only has to handle simple expressions like `a+b`. It's ok to reject expressions like `a+b-c` or `a+(b+c)`. However, make sure you reject in a graceful manner. _Don't break the program_.
+Create a calculator module with an `evaluate` function that _takes a mathematical expression as a string_. For example: `calculator.evaluate('4    +5')`. (This expression should return 9) The calculator should handle _addition_, _subtraction_, _multiplication_ and _division_ of integers. It only has to handle simple expressions like `a+b`. It's ok to reject expressions like `a+b-c` or `a+(b+c)`. However, make sure you reject in a graceful manner. _Don't break the program_.
 
 Use _TDD_ to develop the code! Don't forget your test files need to end with `.test.ts` otherwise jest won't be able to find them automatically.
 

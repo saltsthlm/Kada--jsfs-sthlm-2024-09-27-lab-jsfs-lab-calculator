@@ -9,6 +9,7 @@
     "start": "node src/index.js",
     "lint": "eslint",
     "test": "tsx --test src/calculator.test.ts",
+    "test-only": "tsx --test-only src/calculator.test.ts",
     "lint-fix": "eslint --fix",
     "format-check": "prettier . --check",
     "format": "prettier . --write"
