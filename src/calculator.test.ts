@@ -12,7 +12,7 @@ test("should calculate subtract expressions", () => {
   deepEqual(result, 1);
 });
 
-test.skip("should calculate multiply expressions", () => {
+test("should calculate multiply expressions", () => {
   const result = calculator.evaluate("4*5");
   deepEqual(result, 20);
 });
