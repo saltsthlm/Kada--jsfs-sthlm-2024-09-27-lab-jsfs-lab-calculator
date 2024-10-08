@@ -16,21 +16,24 @@ By the end of the day you will be comfortable with:
 
 ### Linting
 
-**NOTE** In this project we are setting up the tooling for code linting ourselves. 
+**NOTE** In this project we are setting up the tooling for code linting ourselves.
 
 - Run `npm init` to initialize `npm` with a `package.json` file. Answer the prompts appropriately.
 - Since we're working with TypeScript, we want to set up ESLint with TypeScript in our project. Go to the [Getting Started instructions](https://typescript-eslint.io/getting-started) and follow the steps (All three steps).
 - At this point, you should have a `.eslintrc.js` file created in the root folder having code as follows:
+
 ```js
 /* eslint-env node */
 module.exports = {
-    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-    parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
-    root: true,
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
+  root: true,
 };
 ```
+
 - Now, make the following adjustments to the `package.json` file:
+
 ```json
 {
   ...,
@@ -40,20 +43,21 @@ module.exports = {
   },
 }
 ```
+
 - Install the [ESLint VSCode extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 - Since we have `['eslint:recommended', 'plugin:@typescript-eslint/recommended'],` in the `.eslintrc.js` file, this won't work well with the VSCode extension and the output of `npm run lint` will be different than what we see in VSCode. For example, run `npm run lint` and you won't see any errors.
 - Create a new file inside the `src` folder. Name it `greeter.ts`
 - Now open the `src/greeter.ts` and add the following code:
+
 ```ts
 class Greeter {
-  get hello() {
-
-  }
+  get hello() {}
 }
 ```
 
 Now, if you run `npm run lint` you will see all the errors that you also see in VSCode as follows:
+
 ```bash
 some-path/jsfs-lab-calculator/src/cli.ts
    1:27  error  'process' is not defined  no-undef
@@ -71,20 +75,23 @@ some-path/jsfs-lab-calculator/src/server.ts
 ```
 
 Awesome. One more thing to fix. Since we're working with nodejs modules, we need to tell eslint that. Update the `.eslintrc.js` as follows:
+
 ```ts
 /* eslint-env node */
 module.exports = {
-    env: { // add this block
-        node: true
-    },
-    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-    parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
-    root: true,
+  env: {
+    // add this block
+    node: true,
+  },
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
+  root: true,
 };
 ```
 
 If you run `npm run lint`, you should only see the issue with our code:
+
 ```bash
 some-path/jsfs-lab-calculator/src/greeter.ts
   1:7  error  'Greeter' is defined but never used           no-unused-vars
@@ -95,10 +102,11 @@ some-path/jsfs-lab-calculator/src/greeter.ts
 > Note: You may want to install @types/node as well as as ts-node and typescript. You can run the following command for it: `npm i --save-dev @types/node ts-node`
 
 Now update the `greeter.ts` as follows:
+
 ```ts
 class Greeter {
   get hello() {
-    return 'Hello salt!'
+    return "Hello salt!";
   }
 }
 
@@ -111,30 +119,34 @@ Take some time and discuss in your team about what you just did. Try to decode e
 
 ### Testing
 
-Set up the project to use the Jest as test runner. 
+Set up the project to use the Jest as test runner.
 
 - Install jest:
+
 ```bash
 npm i -D ts-jest @types/jest
 ```
 
 Create Jest config using the following command:
+
 ```bash
 npx ts-jest config:init
 ```
 
 Create a new file under the src folder named `greeter.test.ts`:
-```ts
-import greeter from "./greeter"
 
-describe('Greeter', () => {
-  it('should greet', () => {
-    expect(greeter.hello).toBe('Hello salt!');
-  })
-})
+```ts
+import greeter from "./greeter";
+
+describe("Greeter", () => {
+  it("should greet", () => {
+    expect(greeter.hello).toBe("Hello salt!");
+  });
+});
 ```
 
 If you run `npm run lint` now, you will see the following errors:
+
 ```
 some-path/jsfs-lab-calculator/src/greeter.test.ts
   3:1  error  'describe' is not defined  no-undef
@@ -143,21 +155,24 @@ some-path/jsfs-lab-calculator/src/greeter.test.ts
 ```
 
 This is because our ESLint doesn't understand Jest. Update the `.eslintrc.js` file as follows:
+
 ```js
 /* eslint-env node */
 module.exports = {
-  env: { // add this block
+  env: {
+    // add this block
     node: true,
-    jest: true
+    jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
   root: true,
 };
 ```
 
 With the above change, you will not see any lint errors any more. Now modify the `test` script in the `package.json` file as follows:
+
 ```
 {
   ...
@@ -211,7 +226,7 @@ Here are some examples of tests you may want to create:
 
 ### Build a CLI for the calculator
 
-Modify the file `cli.ts` to use the calculator from command line. This code is difficult to test - it's not worth the effort. However, the implementation is fairly minimal, so we will have to make sure that it works by testing it manually by running. 
+Modify the file `cli.ts` to use the calculator from command line. This code is difficult to test - it's not worth the effort. However, the implementation is fairly minimal, so we will have to make sure that it works by testing it manually by running.
 
 First, add two scripts in the package.json as follows:
 
@@ -249,6 +264,7 @@ npm run cli
 }
 
 ```
+
 - Now start the server by running `npm run start:server` from the project's root folder.
 
 ## Testing your API calls
@@ -256,11 +272,13 @@ npm run cli
 For testing the API calls, we recommend you to use the [Rest Client Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for VSCode so you don't have to leave VSCode while working on your app.
 
 Create a new file in the project and name it `calculator.rest`. Add the following code to it:
+
 ```http
 GET http://localhost:8080 HTTP/1.1
 ```
 
 Click the `Send Request` button above it and you should see a response as follows:
+
 ```
 HTTP/1.1 200 OK
 Content-Type: text/plain
@@ -276,6 +294,7 @@ An example request for the calculator may look like this:
 ```http
 GET http://localhost:8080/calculator?q=4%2B5 HTTP/1.1
 ```
+
 The response should be as follows:
 
 ```
@@ -294,6 +313,7 @@ GET http://localhost:8080/calculator?q=foo HTTP/1.1
 ```
 
 The above should return the following response:
+
 ```http
 HTTP/1.1 400 Bad Request
 Date: Tue, 29 May 2018 13:32:30 GMT
@@ -335,12 +355,14 @@ Here are some test that your tests should verify:
 ## Enhance the calculator
 
 - If the expression only contains one operand, the response sent should be that operand itself.
-Example: 
+  Example:
 
 ```http
 GET http://localhost:8080/calculator?q=42 HTTP/1.1
 ```
+
 The above returns:
+
 ```http
 HTTP/1.1 200 OK
 Date: Tue, 29 May 2018 13:32:30 GMT
@@ -356,6 +378,7 @@ Transfer-Encoding: chunked
 ```http
 GET http://localhost:8080/calculator?q=-6%2B5 HTTP/1.1
 ```
+
 The above should return with response:
 
 ```http
