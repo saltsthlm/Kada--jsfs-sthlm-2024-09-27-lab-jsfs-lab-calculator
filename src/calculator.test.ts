@@ -23,20 +23,19 @@ test("should calculate division expressions", () => {
   deepEqual(result, 3);
 });
 
+test("should return a number", () => {
+  const result = calculator.evaluate("15");
+  deepEqual(result, 15);
+});
+
 test("should throw an exception when the denominator in division is zero", () => {
-  assert.throws(() => {
-    calculator.evaluate("15/0");
-  },{
-    message: "can't be divided by zero"
-  });
+  const result = calculator.evaluate("15/0");
+  deepEqual(result, `You entered a faulty expression. Can't be divided by zero.`);  
 });
 
 test("should throw an exception when expression is not valid (invalid mathematical expression)", () => {
-  assert.throws(() => {
-    calculator.evaluate("15/banan");
-  },{
-    message: "input must be valid numbers"
-  });
+  const result = calculator.evaluate("15/banan");
+  deepEqual(result, `You entered a faulty expression. Input must be valid numbers.`);  
 });
 
 test("should handle spaces in expression", () => {
@@ -45,9 +44,11 @@ test("should handle spaces in expression", () => {
 });
 
 test("should contain opperand", () => {
-  assert.throws(() => {
-    calculator.evaluate("153");
-  },{
-    message: "needs to contain opperand"
-  });
+  const result = calculator.evaluate("15banan");
+  deepEqual(result, `You entered a faulty expression. Needs to contain an opperand.`);
+});
+
+test("should throw an exception when entering white space(s) ", () => {
+  const result = calculator.evaluate("     ");
+  deepEqual(result, `You entered a faulty expression. Needs to contain an opperand.`);
 });

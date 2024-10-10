@@ -1,16 +1,28 @@
+import { isValidString } from "./helper-functions";
+
+const regex = /[+\-*/]/;
+const opperands = ["+", "-", "/", "*"];
+
 export const validateInputString = (numberString: string) => {
-  if (!isNaN(Number(numberString))) return true;
+  if (!regex.test(numberString))
+    throw new Error("Needs to contain an opperand.");
 
   let splitedArray: string[] = [];
-  const opperands = ["+", "-", "/", "*"];
+
   opperands.forEach((opperand) => {
     if (numberString.includes(opperand)) {
       splitedArray = numberString.split(opperand);
     }
   });
 
-  if (isNaN(Number(splitedArray[0])) || isNaN(Number(splitedArray[1])))
-    return false;
+  const firstElement = splitedArray[0];
+  const secondElement = splitedArray[1];
 
-  return true;
+  if (
+    !isValidString(firstElement) ||
+    isNaN(Number(firstElement)) ||
+    !isValidString(secondElement) ||
+    isNaN(Number(secondElement))
+  )
+    throw new Error("Input must be valid numbers.");
 };

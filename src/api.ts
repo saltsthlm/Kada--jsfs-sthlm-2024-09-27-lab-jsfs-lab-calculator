@@ -12,7 +12,7 @@ function acceptOnlyGetReq(req: Request, res: Response, next: NextFunction) {
 }
 app.use(acceptOnlyGetReq);
 
- app.get("/", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   try {
     if (!req.query.expression) {
       res.status(400).json({ message: "Missing query parameter: expression" });
